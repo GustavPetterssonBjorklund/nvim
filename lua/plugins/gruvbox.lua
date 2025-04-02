@@ -1,13 +1,14 @@
-return { 
+return {
   "ellisonleao/gruvbox.nvim",
-  priority = 1000, 
-  config = true, 
-  opts = ...,
-  config = function()
-    require("gruvbox").setup({
-        terminal_colors = true,
-        contrast = "hard"
-    })
-    vim.cmd.colorscheme "gruvbox"
+  priority = 1000,
+  opts = {
+    terminal_colors = true,
+    contrast = "hard",
+    transparent_mode = true, -- optional if you want transparency
+  },
+  config = function(_, opts)
+    require("gruvbox").setup(opts)
+    vim.cmd.colorscheme("gruvbox")
   end,
 }
+
