@@ -14,10 +14,8 @@ return {
         auto_resize = true,
       },
     })
-<<<<<<< HEAD
+
     vim.keymap.set('n', '\'', '<cmd>Neotree toggle<CR>')
-=======
     vim.keymap.set('n', '\'', ':Neotree toggle<CR>', {})
->>>>>>> d1c438f132de46078ef22236df2982fa030e69e1
   end,
 }
