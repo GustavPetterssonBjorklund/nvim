@@ -124,6 +124,9 @@ return {
                 },
             }
 
+            -- overseer
+            ins_left { "overseer" }
+
             -- center gap
             ins_left { function() return "%=" end }
 
