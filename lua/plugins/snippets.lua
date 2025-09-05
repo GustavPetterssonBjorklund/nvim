@@ -5,6 +5,16 @@ return {
         dependencies = {
             "rafamadriz/friendly-snippets", -- a big collection of community snippets
         },
+        build = "make install_jsregexp",
+        config = function()
+            local ls = require("luasnip")
+            require("luasnip.loaders.from_vscode").lazy_load()
+            ls.config.set_config({
+                history = true,
+                updateevents = "TextChanged, TextChangedI",
+                enable_autosnippets = true,
+            })
+        end
     },
 
     -- Completion engine
