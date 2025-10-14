@@ -13,6 +13,7 @@ vim.opt.softtabstop = 4
 
 -- Line numbering (relative in normal mode)
 vim.opt.number = true
+vim.opt.relativenumber = true
 local group = vim.api.nvim_create_augroup("LineNumberToggle", { clear = true })
 vim.api.nvim_create_autocmd("InsertEnter", {
     group = group,
@@ -25,12 +26,16 @@ vim.api.nvim_create_autocmd("InsertLeave", {
     callback = function() vim.opt.relativenumber = true end,
 })
 
--- Keybinds
-vim.keymap.set("n", "\\", "<cmd>Neotree toggle<cr>", { desc = "File Explorer" })
+-- General Movement
+vim.keymap.set('n', '<C-w>', '<cmd>q<cr>', { desc = 'Close buffer' })
+vim.keymap.set('n', '<C-s>', '<cmd>w<cr>', { desc = 'Save buffer' })
+
+-- Neotree
+vim.keymap.set('n', "\\", '<cmd>Neotree toggle<cr>', { desc = 'File Explorer' })
 
 -- Tabs
-vim.keymap.set("n", "<leader>tc", ":tabclose<CR>", { desc = "Tab Close" })
-vim.keymap.set("n", "<leader>tn", ":tabnew<CR>", { desc = "Tab New" })
+vim.keymap.set('n', '<leader>tc', ':tabclose<CR>', { desc = 'Tab Close' })
+vim.keymap.set('n', '<leader>tn', ':tabnew<CR>', { desc = 'Tab New' })
 
 -- Telescope
 local builtin = require('telescope.builtin')
