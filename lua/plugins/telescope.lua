@@ -17,6 +17,7 @@ return {
             { "<leader>tb", function() require("telescope.builtin").buffers() end,   desc = "Telescope buffers" },
             { "<leader>th", function() require("telescope.builtin").help_tags() end, desc = "Telescope help" },
             { "<leader>tr", function() require("telescope.builtin").resume() end,    desc = "Telescope resume" },
+            { "<leader>tk", function() require("telescope.builtin").keymaps() end,   desc = "Telescope keymaps" },
         },
         opts = function()
             local actions = require("telescope.actions")

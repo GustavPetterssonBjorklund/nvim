@@ -53,9 +53,6 @@ return {
       end
       opts.ensure_installed = ensured
 
-      local mason_lspconfig = require("mason-lspconfig")
-      mason_lspconfig.setup(opts)
-
       local capabilities = vim.lsp.protocol.make_client_capabilities()
       local ok, cmp_lsp = pcall(require, "cmp_nvim_lsp")
       if ok then
@@ -89,7 +86,7 @@ return {
         end
       end
 
-      mason_lspconfig.setup_handlers({
+      opts.handlers = {
         function(server_name)
           local server_opts = servers[server_name] or {}
           server_opts = vim.tbl_deep_extend("force", {
@@ -98,7 +95,10 @@ return {
           }, server_opts)
           require("lspconfig")[server_name].setup(server_opts)
         end,
-      })
+      }
+
+      local mason_lspconfig = require("mason-lspconfig")
+      mason_lspconfig.setup(opts)
     end,
   },
 }
