@@ -28,20 +28,6 @@ return {
     },
     config = function(_, opts)
       require("neo-tree").setup(opts)
-
-      -- Keep it transparent after any colorscheme change
-      vim.api.nvim_create_autocmd("ColorScheme", {
-        callback = function()
-          vim.cmd [[
-            highlight NormalFloat        guibg=NONE
-            highlight FloatBorder        guibg=NONE
-            highlight NeoTreeNormal      guibg=NONE
-            highlight NeoTreeNormalNC    guibg=NONE
-            highlight NeoTreeEndOfBuffer guibg=NONE
-          ]]
-        end,
-      })
     end,
   },
 }
-

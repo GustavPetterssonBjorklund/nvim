@@ -1,45 +1,73 @@
--- colorscheme & transparent bg
-require("tokyonight").setup({
-    style = "night",
-    transparent = true,
-})
-vim.cmd [[colorscheme tokyonight]]
+local opt = vim.opt
 
--- Generic formatting options
-vim.opt.expandtab = true
-vim.opt.tabstop = 4
-vim.opt.shiftwidth = 4
-vim.opt.softtabstop = 4
+-- UI
+opt.termguicolors = true
+opt.number = true
+opt.relativenumber = true
+opt.signcolumn = "yes"
+opt.cursorline = true
+opt.scrolloff = 4
+opt.sidescrolloff = 8
+opt.fillchars = { eob = " " }
 
--- Line numbering (relative in normal mode)
-vim.opt.number = true
-vim.opt.relativenumber = true
-local group = vim.api.nvim_create_augroup("LineNumberToggle", { clear = true })
+-- Tabs & indentation
+opt.expandtab = true
+opt.tabstop = 4
+opt.shiftwidth = 4
+opt.softtabstop = 4
+opt.smartindent = true
+
+-- Search
+opt.ignorecase = true
+opt.smartcase = true
+opt.hlsearch = false
+opt.incsearch = true
+
+-- Splits & windows
+opt.splitright = true
+opt.splitbelow = true
+opt.winblend = 0
+
+-- Misc
+opt.clipboard = "unnamedplus"
+opt.updatetime = 250
+opt.timeoutlen = 400
+opt.undofile = true
+opt.confirm = true
+opt.list = true
+opt.listchars = { tab = "»·", trail = "·", extends = "»", precedes = "«" }
+
+-- Toggle relative numbers in insert mode
+local number_group = vim.api.nvim_create_augroup("LineNumberToggle", { clear = true })
 vim.api.nvim_create_autocmd("InsertEnter", {
-    group = group,
-    pattern = "*",
-    callback = function() vim.opt.relativenumber = false end,
+    group = number_group,
+    callback = function() opt.relativenumber = false end,
 })
 vim.api.nvim_create_autocmd("InsertLeave", {
-    group = group,
-    pattern = "*",
-    callback = function() vim.opt.relativenumber = true end,
+    group = number_group,
+    callback = function() opt.relativenumber = true end,
 })
 
--- General Movement
-vim.keymap.set('n', '<C-w>', '<cmd>q<cr>', { desc = 'Close buffer' })
-vim.keymap.set('n', '<C-s>', '<cmd>w<cr>', { desc = 'Save buffer' })
+-- Brief visual feedback when yanking
+vim.api.nvim_create_autocmd("TextYankPost", {
+    callback = function() vim.highlight.on_yank({ higroup = "Visual", timeout = 150 }) end,
+})
 
--- Neotree
-vim.keymap.set('n', "\\", '<cmd>Neotree toggle<cr>', { desc = 'File Explorer' })
+-- Diagnostics
+local diagnostic_signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
+for type, icon in pairs(diagnostic_signs) do
+    local hl = "DiagnosticSign" .. type
+    vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
+end
+vim.diagnostic.config({
+    severity_sort = true,
+    update_in_insert = false,
+    float = { border = "rounded" },
+})
 
--- Tabs
-vim.keymap.set('n', '<leader>tc', ':tabclose<CR>', { desc = 'Tab Close' })
-vim.keymap.set('n', '<leader>tn', ':tabnew<CR>', { desc = 'Tab New' })
-
--- Telescope
-local builtin = require('telescope.builtin')
-vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'Telescope find files' })
-vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = 'Telescope live grep' })
-vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = 'Telescope buffers' })
-vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'Telescope help tags' })
+-- General mappings
+vim.keymap.set("n", "<C-w>", "<cmd>q<cr>", { desc = "Close buffer" })
+vim.keymap.set("n", "<C-s>", "<cmd>w<cr>", { desc = "Save buffer" })
+vim.keymap.set("n", "\\", "<cmd>Neotree toggle<cr>", { desc = "File Explorer" })
+vim.keymap.set("n", "<leader>tc", "<cmd>tabclose<CR>", { desc = "Tab Close" })
+vim.keymap.set("n", "<leader>tn", "<cmd>tabnew<CR>", { desc = "Tab New" })
