@@ -66,7 +66,6 @@ vim.diagnostic.config({
 })
 
 -- General mappings
-vim.keymap.set("n", "<C-w>", "<cmd>q<cr>", { desc = "Close buffer" })
 vim.keymap.set("n", "<C-s>", "<cmd>w<cr>", { desc = "Save buffer" })
 vim.keymap.set("n", "\\", "<cmd>Neotree toggle<cr>", { desc = "File Explorer" })
 vim.keymap.set("n", "<leader>tc", "<cmd>tabclose<CR>", { desc = "Tab Close" })
