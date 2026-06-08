@@ -98,6 +98,10 @@
 
 | Key | Action |
 | --- | --- |
+| `<leader>tt` | Toggle Terminal buffer |
+| `<leader>tf` | Toggle floating terminal |
+| `<leader>th` | Toggle horizontal terminal |
+| `<leader>tv` | Toggle vertical terminal |
 | `<Esc><Esc>` | Exit terminal mode |
 | `<leader>qq` | Quit all |
 | `q` | Close help, quickfix, checkhealth, and similar windows |

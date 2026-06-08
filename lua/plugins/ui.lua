@@ -96,7 +96,7 @@ return {
 				"  <leader>ff  Find files        <leader>fg  Live grep",
 				"  <leader>e   Explorer          <leader>gg  LazyGit",
 				"  gd          Definition        <leader>la  Code action",
-				"  <leader>xx  Diagnostics       <leader>db  Breakpoint",
+				"  <leader>tt  Terminal          <leader>db  Breakpoint",
 				"",
 				"Press s or run :Cheatsheet for the full scrollable shortcut sheet.",
 			}

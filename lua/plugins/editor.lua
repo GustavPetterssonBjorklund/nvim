@@ -11,6 +11,7 @@ return {
         { "<leader>g", group = "git" },
         { "<leader>l", group = "lsp" },
         { "<leader>q", group = "quit/session" },
+        { "<leader>t", group = "terminal" },
         { "<leader>u", group = "ui" },
         { "<leader>x", group = "diagnostics" },
       },
@@ -91,5 +92,57 @@ return {
     "lewis6991/satellite.nvim",
     event = "VeryLazy",
     opts = {},
+  },
+  {
+    "akinsho/toggleterm.nvim",
+    keys = {
+      {
+        "<leader>tt",
+        function()
+          require("config.terminal").toggle_tmux()
+        end,
+        desc = "Toggle tmux terminal buffer",
+      },
+      {
+        "<leader>tf",
+        function()
+          require("config.terminal").toggle_float()
+        end,
+        desc = "Toggle floating terminal",
+      },
+      {
+        "<leader>th",
+        function()
+          require("config.terminal").toggle_horizontal()
+        end,
+        desc = "Toggle horizontal terminal",
+      },
+      {
+        "<leader>tv",
+        function()
+          require("config.terminal").toggle_vertical()
+        end,
+        desc = "Toggle vertical terminal",
+      },
+    },
+    opts = {
+      direction = "float",
+      hide_numbers = true,
+      insert_mappings = false,
+      open_mapping = false,
+      persist_mode = true,
+      persist_size = true,
+      shade_terminals = true,
+      start_in_insert = true,
+      float_opts = {
+        border = "rounded",
+        height = function()
+          return math.floor(vim.o.lines * 0.8)
+        end,
+        width = function()
+          return math.floor(vim.o.columns * 0.85)
+        end,
+      },
+    },
   },
 }
