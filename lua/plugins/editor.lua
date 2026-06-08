@@ -37,7 +37,10 @@ return {
         },
         follow_current_file = { enabled = true },
       },
-      window = { width = 32 },
+      window = {
+        position = "right",
+        width = 32,
+      },
     },
   },
   {
