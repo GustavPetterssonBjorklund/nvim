@@ -88,7 +88,7 @@ return {
 				dashboard.button("g", "  Live grep", "<cmd>Telescope live_grep<cr>"),
 				dashboard.button("s", "  Shortcut sheet", "<cmd>Cheatsheet<cr>"),
 				dashboard.button("c", "  Edit config", "<cmd>edit ~/.config/nvim/init.lua<cr>"),
-				dashboard.button("q", "  Quit", "<cmd>qa<cr>"),
+				dashboard.button("q", "  Quit", "<cmd>lua require('config.session').quit_all()<cr>"),
 			}
 			dashboard.section.footer.val = {
 				"",

@@ -2,7 +2,27 @@ local map = vim.keymap.set
 
 map({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
 
-map("n", "<leader>qq", "<cmd>qa<cr>", { desc = "Quit all" })
+map("n", "<leader>qq", function()
+  require("config.session").quit_all()
+end, { desc = "Quit all" })
+map("n", "<leader>qs", function()
+  require("config.session").restore({ notify = true })
+end, { desc = "Restore session" })
+map("n", "<leader>qS", function()
+  require("config.session").save({ force = true, notify = true })
+end, { desc = "Save session" })
+
+vim.cmd([[
+  cnoreabbrev <expr> qa getcmdtype() == ':' && getcmdline() == 'qa'
+    \ ? 'lua require("config.session").quit_all()'
+    \ : 'qa'
+  cnoreabbrev <expr> qall getcmdtype() == ':' && getcmdline() == 'qall'
+    \ ? 'lua require("config.session").quit_all()'
+    \ : 'qall'
+  cnoreabbrev <expr> quitall getcmdtype() == ':' && getcmdline() == 'quitall'
+    \ ? 'lua require("config.session").quit_all()'
+    \ : 'quitall'
+]])
 map("n", "<leader>w", "<cmd>w<cr>", { desc = "Write" })
 map("n", "<leader>h", "<cmd>nohlsearch<cr>", { desc = "Clear search highlight" })
 map("n", "<leader>?", "<cmd>Cheatsheet<cr>", { desc = "Open cheat sheet" })

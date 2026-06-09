@@ -26,3 +26,20 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.keymap.set("n", "q", "<cmd>close<cr>", { buffer = event.buf, silent = true, desc = "Close window" })
   end,
 })
+
+vim.api.nvim_create_autocmd("VimLeavePre", {
+  group = group,
+  callback = function()
+    require("config.session").save({ notify = false })
+  end,
+})
+
+vim.api.nvim_create_autocmd("VimEnter", {
+  group = group,
+  nested = true,
+  callback = function()
+    vim.schedule(function()
+      require("config.session").restore({ auto = true, notify = false })
+    end)
+  end,
+})
