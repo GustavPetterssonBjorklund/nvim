@@ -315,12 +315,12 @@ local function apply_highlights(buf, lines)
 end
 
 function M.open()
-  vim.cmd("tabnew")
+  vim.cmd("enew")
   local buf = vim.api.nvim_get_current_buf()
 
   vim.bo[buf].buftype = "nofile"
   vim.bo[buf].bufhidden = "wipe"
-  vim.bo[buf].buflisted = false
+  vim.bo[buf].buflisted = true
   vim.bo[buf].swapfile = false
   vim.bo[buf].filetype = "cheatsheet"
   vim.wo.number = false
@@ -335,7 +335,7 @@ function M.open()
   vim.api.nvim_buf_set_lines(buf, 0, -1, false, rendered)
   apply_highlights(buf, rendered)
   vim.bo[buf].modifiable = false
-  vim.keymap.set("n", "q", "<cmd>tabclose<cr>", { buffer = buf, silent = true, desc = "Close cheat sheet" })
+  vim.keymap.set("n", "q", "<cmd>bdelete<cr>", { buffer = buf, silent = true, desc = "Close cheat sheet" })
 end
 
 vim.api.nvim_create_user_command("Cheatsheet", M.open, { desc = "Open shortcut cheat sheet" })

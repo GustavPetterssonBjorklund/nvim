@@ -5,6 +5,7 @@ map({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
 map("n", "<leader>qq", "<cmd>qa<cr>", { desc = "Quit all" })
 map("n", "<leader>w", "<cmd>w<cr>", { desc = "Write" })
 map("n", "<leader>h", "<cmd>nohlsearch<cr>", { desc = "Clear search highlight" })
+map("n", "<leader>?", "<cmd>Cheatsheet<cr>", { desc = "Open cheat sheet" })
 
 map("n", "<C-h>", "<C-w>h", { desc = "Go to left window" })
 map("n", "<C-j>", "<C-w>j", { desc = "Go to lower window" })
