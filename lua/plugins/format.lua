@@ -76,6 +76,7 @@ return {
         "json-lsp",
         "lua-language-server",
         "marksman",
+        "prisma-language-server",
         "prettier",
         "rust-analyzer",
         "shfmt",
