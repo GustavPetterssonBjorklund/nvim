@@ -19,6 +19,16 @@ return {
 		event = "VeryLazy",
 		dependencies = { "nvim-tree/nvim-web-devicons" },
 		opts = {
+			sections = {
+				lualine_x = {
+					{
+						function()
+							return require("config.diagnostics").status()
+						end,
+						color = { fg = "#fabd2f", gui = "bold" },
+					},
+				},
+			},
 			options = {
 				component_separators = "",
 				globalstatus = true,

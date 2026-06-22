@@ -32,6 +32,7 @@ return {
         lua = { "stylua" },
         markdown = { "prettier" },
         rust = { "rustfmt" },
+        svelte = { "prettier" },
         typescript = { "prettier" },
         typescriptreact = { "prettier" },
         yaml = { "prettier" },
@@ -48,6 +49,7 @@ return {
         javascriptreact = { "eslint_d" },
         typescript = { "eslint_d" },
         typescriptreact = { "eslint_d" },
+        svelte = { "eslint_d" },
       }
 
       vim.api.nvim_create_autocmd({ "BufReadPost", "BufWritePost", "InsertLeave" }, {
@@ -76,10 +78,12 @@ return {
         "json-lsp",
         "lua-language-server",
         "marksman",
+        "prisma-language-server",
         "prettier",
         "rust-analyzer",
         "shfmt",
         "stylua",
+        "svelte-language-server",
         "typescript-language-server",
         "yaml-language-server",
       },

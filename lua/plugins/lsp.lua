@@ -25,6 +25,8 @@ return {
         "jsonls",
         "lua_ls",
         "marksman",
+        "prismals",
+        "svelte",
         "rust_analyzer",
         "ts_ls",
         "yamlls",
@@ -51,6 +53,8 @@ return {
         html = {},
         jsonls = {},
         marksman = {},
+        prismals = {},
+        svelte = {},
         rust_analyzer = {
           settings = {
             ["rust-analyzer"] = {

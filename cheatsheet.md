@@ -33,6 +33,13 @@
 | Key | Action |
 | --- | --- |
 | `<leader>gg` | LazyGit |
+| `<leader>go` | Octo actions |
+| `<leader>gP` | GitHub PRs |
+| `<leader>gC` | Checkout PR |
+| `<leader>gR` | Start PR review |
+| `<leader>gS` | Submit PR review |
+| `<leader>gc` | Add PR comment |
+| `<leader>gO` | Open PR in browser |
 | `<leader>gb` | Blame line |
 | `<leader>gd` | Diff this |
 | `<leader>gp` | Preview hunk |

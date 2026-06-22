@@ -34,6 +34,7 @@ return {
         "markdown",
         "markdown_inline",
         "rust",
+        "svelte",
         "tsx",
         "typescript",
         "vim",
