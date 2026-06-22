@@ -49,7 +49,13 @@ return {
     cmd = "Trouble",
     dependencies = { "nvim-tree/nvim-web-devicons" },
     keys = {
-      { "<leader>xx", "<cmd>Trouble diagnostics toggle<cr>", desc = "Diagnostics" },
+      {
+        "<leader>xx",
+        function()
+          require("config.diagnostics").toggle()
+        end,
+        desc = "Toggle diagnostics",
+      },
       { "<leader>xX", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>", desc = "Buffer diagnostics" },
       { "<leader>xs", "<cmd>Trouble symbols toggle<cr>", desc = "Symbols" },
       { "<leader>xl", "<cmd>Trouble lsp toggle<cr>", desc = "LSP references" },
