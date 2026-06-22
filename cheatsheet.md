@@ -98,6 +98,13 @@
 
 | Key | Action |
 | --- | --- |
+| `<leader>tn` | New tab |
+| `<leader>tc` | Close tab |
+| `<leader>to` | Close other tabs |
+| `<leader>t[` | Previous tab |
+| `<leader>t]` | Next tab |
+| `<leader>tH` | First tab |
+| `<leader>tL` | Last tab |
 | `<leader>tt` | Toggle Terminal buffer |
 | `<leader>tf` | Toggle floating terminal |
 | `<leader>th` | Toggle horizontal terminal |

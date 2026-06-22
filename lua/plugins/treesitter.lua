@@ -1,3 +1,7 @@
+local function parser_available(bufnr)
+  return pcall(vim.treesitter.get_parser, bufnr)
+end
+
 return {
   {
     "nvim-treesitter/nvim-treesitter",
@@ -8,6 +12,15 @@ return {
       "nvim-treesitter/nvim-treesitter-textobjects",
     },
     opts = {
+      highlight = {
+        enable = true,
+        -- If parser initialization is already broken for a buffer, keep it usable
+        -- instead of letting Treesitter crash redraw/highlight startup.
+        disable = function(_, bufnr)
+          return vim.bo[bufnr].buftype ~= "" or not parser_available(bufnr)
+        end,
+        additional_vim_regex_highlighting = false,
+      },
       ensure_installed = {
         "bash",
         "c",
@@ -27,8 +40,12 @@ return {
         "vimdoc",
         "yaml",
       },
-      highlight = { enable = true },
-      indent = { enable = true },
+      indent = {
+        enable = true,
+        disable = function(_, bufnr)
+          return vim.bo[bufnr].buftype ~= "" or not parser_available(bufnr)
+        end,
+      },
       textobjects = {
         move = {
           enable = true,

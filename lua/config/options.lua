@@ -12,9 +12,8 @@ opt.confirm = true
 opt.cursorline = true
 opt.expandtab = true
 opt.fillchars = { eob = " ", fold = " ", foldopen = "", foldsep = " ", foldclose = "" }
-opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 opt.foldlevel = 99
-opt.foldmethod = "expr"
+opt.foldmethod = "manual"
 opt.ignorecase = true
 opt.inccommand = "split"
 opt.laststatus = 3

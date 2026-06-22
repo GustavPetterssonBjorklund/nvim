@@ -36,6 +36,14 @@ map("n", "<S-h>", "<cmd>bprevious<cr>", { desc = "Previous buffer" })
 map("n", "<S-l>", "<cmd>bnext<cr>", { desc = "Next buffer" })
 map("n", "<leader>bd", "<cmd>bdelete<cr>", { desc = "Delete buffer" })
 
+map("n", "<leader>tn", "<cmd>tabnew<cr>", { desc = "New tab" })
+map("n", "<leader>tc", "<cmd>tabclose<cr>", { desc = "Close tab" })
+map("n", "<leader>to", "<cmd>tabonly<cr>", { desc = "Close other tabs" })
+map("n", "<leader>t[", "<cmd>tabprevious<cr>", { desc = "Previous tab" })
+map("n", "<leader>t]", "<cmd>tabnext<cr>", { desc = "Next tab" })
+map("n", "<leader>tH", "<cmd>tabfirst<cr>", { desc = "First tab" })
+map("n", "<leader>tL", "<cmd>tablast<cr>", { desc = "Last tab" })
+
 map("n", "<leader>xl", "<cmd>lopen<cr>", { desc = "Location list" })
 map("n", "<leader>xq", "<cmd>copen<cr>", { desc = "Quickfix list" })
 

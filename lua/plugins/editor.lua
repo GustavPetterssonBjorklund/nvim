@@ -11,7 +11,7 @@ return {
         { "<leader>g", group = "git" },
         { "<leader>l", group = "lsp" },
         { "<leader>q", group = "quit/session" },
-        { "<leader>t", group = "terminal" },
+        { "<leader>t", group = "terminal/tabs" },
         { "<leader>u", group = "ui" },
         { "<leader>x", group = "diagnostics" },
       },
