@@ -78,6 +78,10 @@ return {
         },
       }
 
+      if vim.fn.executable("rustc") ~= 1 then
+        servers.rust_analyzer = nil
+      end
+
       local enabled = {}
       for server, server_opts in pairs(servers) do
         local opts = vim.tbl_deep_extend("force", {}, server_opts, {

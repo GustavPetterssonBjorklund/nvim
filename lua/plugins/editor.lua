@@ -6,6 +6,7 @@ return {
       preset = "modern",
       spec = {
         { "<leader>b", group = "buffers" },
+        { "<leader>c", group = "copilot" },
         { "<leader>d", group = "debug" },
         { "<leader>f", group = "find" },
         { "<leader>g", group = "git" },

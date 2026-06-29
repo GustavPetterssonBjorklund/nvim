@@ -69,6 +69,17 @@ return {
 				command_palette = true,
 				long_message_to_split = false,
 			},
+			routes = {
+				{
+					view = "split",
+					filter = {
+						any = {
+							{ event = "msg_show", min_height = 12 },
+							{ error = true, min_height = 8 },
+						},
+					},
+				},
+			},
 		},
 	},
 	{

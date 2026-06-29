@@ -63,6 +63,15 @@
 | `<leader>ls` | Document symbols |
 | `<leader>lS` | Workspace symbols |
 
+## Copilot
+
+| Key | Action |
+| --- | --- |
+| `<M-l>` | Accept Copilot suggestion |
+| `<leader>ca` | Copilot auth |
+| `<leader>cp` | Copilot panel |
+| `<leader>cs` | Copilot status |
+
 ## Diagnostics / Trouble
 
 | Key | Action |
