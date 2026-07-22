@@ -33,6 +33,7 @@ return {
         "luadoc",
         "markdown",
         "markdown_inline",
+        "prisma",
         "rust",
         "svelte",
         "tsx",
