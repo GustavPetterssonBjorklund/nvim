@@ -15,6 +15,23 @@ return {
 		end,
 	},
 	{
+		"folke/snacks.nvim",
+		lazy = false,
+		priority = 1000,
+		keys = {
+			{
+				"<leader>ui",
+				function()
+					Snacks.image.hover()
+				end,
+				desc = "Image preview",
+			},
+		},
+		opts = {
+			image = {},
+		},
+	},
+	{
 		"nvim-lualine/lualine.nvim",
 		event = "VeryLazy",
 		dependencies = { "nvim-tree/nvim-web-devicons" },
