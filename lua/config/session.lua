@@ -24,10 +24,7 @@ local function has_restorable_work()
 end
 
 local function can_auto_restore()
-  return #vim.api.nvim_list_uis() > 0
-    and vim.fn.argc(-1) == 0
-    and vim.fn.exists("v:std_in") == 1
-    and vim.v.std_in == 0
+  return #vim.api.nvim_list_uis() > 0 and vim.fn.argc(-1) == 0 and vim.fn.exists("v:std_in") == 1 and vim.v.std_in == 0
 end
 
 function M.save(opts)
@@ -83,11 +80,8 @@ function M.quit_all()
   local tabs = vim.fn.tabpagenr("$")
 
   if tabs > 1 then
-    local choice = vim.fn.confirm(
-      ("Quit Neovim with %d tabs open? Session will be saved."):format(tabs),
-      "&Quit\n&Cancel",
-      2
-    )
+    local choice =
+      vim.fn.confirm(("Quit Neovim with %d tabs open? Session will be saved."):format(tabs), "&Quit\n&Cancel", 2)
     if choice ~= 1 then
       return
     end
