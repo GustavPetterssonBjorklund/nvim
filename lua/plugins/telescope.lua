@@ -10,6 +10,10 @@ return {
       { "<leader>fr", "<cmd>Telescope oldfiles<cr>", desc = "Recent files" },
       { "<leader>fc", "<cmd>Telescope commands<cr>", desc = "Commands" },
       { "<leader>fk", "<cmd>Telescope keymaps<cr>", desc = "Keymaps" },
+      { "<leader>fw", "<cmd>Telescope grep_string<cr>", desc = "Grep word under cursor" },
+      { "<leader>fd", "<cmd>Telescope diagnostics<cr>", desc = "Diagnostics" },
+      { "<leader>f.", "<cmd>Telescope resume<cr>", desc = "Resume last picker" },
+      { "<leader>/", "<cmd>Telescope current_buffer_fuzzy_find<cr>", desc = "Fuzzy find in buffer" },
     },
     dependencies = {
       "nvim-lua/plenary.nvim",

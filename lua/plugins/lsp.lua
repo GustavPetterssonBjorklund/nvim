@@ -106,13 +106,13 @@ return {
 
           map("n", "gd", vim.lsp.buf.definition, "Go to definition")
           map("n", "gD", vim.lsp.buf.declaration, "Go to declaration")
-          map("n", "gr", vim.lsp.buf.references, "References")
+          map("n", "gr", "<cmd>Telescope lsp_references<cr>", "References")
           map("n", "gI", vim.lsp.buf.implementation, "Go to implementation")
           map("n", "K", vim.lsp.buf.hover, "Hover")
           map("n", "<leader>la", vim.lsp.buf.code_action, "Code action")
           map("n", "<leader>lr", vim.lsp.buf.rename, "Rename")
-          map("n", "<leader>ls", vim.lsp.buf.document_symbol, "Document symbols")
-          map("n", "<leader>lS", vim.lsp.buf.workspace_symbol, "Workspace symbols")
+          map("n", "<leader>ls", "<cmd>Telescope lsp_document_symbols<cr>", "Document symbols")
+          map("n", "<leader>lS", "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", "Workspace symbols")
           map("n", "<leader>lf", format, "Format")
         end,
       })

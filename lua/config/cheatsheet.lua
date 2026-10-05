@@ -1,6 +1,5 @@
 local M = {}
 
-local cheatsheet_path = vim.fn.stdpath("config") .. "/cheatsheet.md"
 local helpers_path = vim.fn.stdpath("config") .. "/cheatsheet-defaults.md"
 local namespace = vim.api.nvim_create_namespace("config.cheatsheet")
 local column_gap = "     "
@@ -314,7 +313,94 @@ local function apply_highlights(buf, lines)
   end
 end
 
+local sections = {
+  { "Files / Search", { "<leader>f", "<leader>s", "<leader>e", "<leader>E", "<leader>/", "-" } },
+  {
+    "Navigation",
+    { "s", "S", "<leader>a", "<leader>A", "<leader>1", "<leader>2", "<leader>3", "<leader>4", "<S-", "<C-" },
+  },
+  { "Buffers / Tabs", { "<leader>b", "<leader><Tab>" } },
+  { "Git", { "<leader>g", "]h", "[h" } },
+  { "LSP", { "<leader>l", "g", "K" } },
+  { "Copilot", { "<leader>c", "<M-" } },
+  { "Diagnostics / Trouble", { "<leader>x", "[d", "]d" } },
+  { "Debug", { "<leader>d" } },
+  { "Terminal / Session", { "<leader>t", "<leader>q", "<Esc><Esc>" } },
+  { "UI", { "<leader>u" } },
+}
+
+local function section_of(lhs)
+  for _, section in ipairs(sections) do
+    for _, prefix in ipairs(section[2]) do
+      if lhs:sub(1, #prefix) == prefix then
+        return section[1]
+      end
+    end
+  end
+  return "Editing"
+end
+
+local function collect_keymaps(buf)
+  local entries, order = {}, {}
+
+  for _, mode in ipairs({ "n", "x", "t" }) do
+    local maps = vim.api.nvim_get_keymap(mode)
+    vim.list_extend(maps, vim.api.nvim_buf_get_keymap(buf, mode))
+
+    for _, map in ipairs(maps) do
+      local lhs = map.lhs:gsub("^ ", "<leader>")
+      local user_defined = map.sid and map.sid > 0
+      if map.desc and user_defined and not lhs:match("^<Plug>") then
+        local id = lhs .. "\0" .. map.desc
+        if not entries[id] then
+          entries[id] = { lhs = lhs, desc = map.desc, modes = {} }
+          table.insert(order, id)
+        end
+        entries[id].modes[mode] = true
+      end
+    end
+  end
+
+  local found = {}
+  for _, id in ipairs(order) do
+    local entry = entries[id]
+    local desc = entry.desc
+    if not entry.modes.n then
+      desc = table.concat(vim.tbl_keys(entry.modes), "/") .. " " .. desc
+    end
+    local name = section_of(entry.lhs)
+    found[name] = found[name] or {}
+    table.insert(found[name], { entry.lhs, desc })
+  end
+
+  return found
+end
+
+-- Builds the shortcut table markdown from the live keymaps so it cannot drift.
+local function generate_markdown(buf)
+  local found = collect_keymaps(buf)
+  local lines = { "# Nvim Shortcut Cheat Sheet", "", "`leader` = `<Space>`" }
+  local order = { "Files / Search", "Navigation", "Buffers / Tabs", "Git", "LSP", "Copilot" }
+  vim.list_extend(order, { "Diagnostics / Trouble", "Debug", "Terminal / Session", "UI", "Editing" })
+
+  for _, name in ipairs(order) do
+    local rows = found[name]
+    if rows then
+      table.sort(rows, function(a, b)
+        return a[1] < b[1]
+      end)
+      vim.list_extend(lines, { "", "## " .. name, "", "| Key | Action |", "| --- | --- |" })
+      for _, row in ipairs(rows) do
+        table.insert(lines, ("| `%s` | %s |"):format(row[1], row[2]))
+      end
+    end
+  end
+
+  return lines
+end
+
 function M.open()
+  local source_buf = vim.api.nvim_get_current_buf()
   vim.cmd("enew")
   local buf = vim.api.nvim_get_current_buf()
 
@@ -329,7 +415,7 @@ function M.open()
   vim.wo.wrap = false
 
   vim.api.nvim_buf_set_name(buf, "Shortcut Cheat Sheet")
-  local shortcuts = render_markdown(vim.fn.readfile(cheatsheet_path), { min_key_width = shortcut_key_width })
+  local shortcuts = render_markdown(generate_markdown(source_buf), { min_key_width = shortcut_key_width })
   local helpers = render_markdown(vim.fn.readfile(helpers_path))
   local rendered = add_left_gutter(render_columns(shortcuts, helpers))
   vim.api.nvim_buf_set_lines(buf, 0, -1, false, rendered)
