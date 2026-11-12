@@ -16,6 +16,7 @@ return {
         { "<leader>t", group = "terminal" },
         { "<leader><Tab>", group = "tabs" },
         { "<leader>u", group = "ui" },
+        { "<leader>v", group = "vimtex", ft = { "tex", "bib" } },
         { "[", group = "prev" },
         { "]", group = "next" },
         { "<leader>x", group = "diagnostics" },

@@ -84,6 +84,7 @@ return {
         "shfmt",
         "stylua",
         "svelte-language-server",
+        "texlab",
         "typescript-language-server",
         "yaml-language-server",
       },

@@ -28,6 +28,7 @@ return {
         "prismals",
         "svelte",
         "rust_analyzer",
+        "texlab",
         "ts_ls",
         "yamlls",
       },
@@ -63,6 +64,7 @@ return {
             },
           },
         },
+        texlab = {},
         ts_ls = {},
         yamlls = {},
         lua_ls = {
